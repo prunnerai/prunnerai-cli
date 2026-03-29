@@ -1,2 +1,5 @@
-requests>=2.28.0
-argparse>=1.4.0
+# PrunnerAI CLI — Core (no external dependencies)
+# For AI features, install extras:
+#   pip install prunnerai-cli[ai]
+# Or manually:
+#   pip install torch transformers huggingface_hub
