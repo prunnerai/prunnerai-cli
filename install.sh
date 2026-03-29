@@ -1,17 +1,30 @@
 #!/bin/bash
-# PrunnerAI CLI v2.0.0 — Setup 🚀
+# PrunnerAI CLI — Quick Install
 set -e
-echo "🔥 Setting up PrunnerAI Bridge Worker v2.0.0..."
+
+echo "╔═══════════════════════════════════════════╗"
+echo "║   PrunnerAI CLI — Installer               ║"
+echo "╚═══════════════════════════════════════════╝"
 echo ""
-echo "Option 1 (recommended): pip install prunnerai"
-echo "Option 2 (manual):      python3 -m pip install -r requirements.txt"
-echo ""
-python3 -m pip install -r requirements.txt
-if [ ! -f .env ]; then
-  cp .env.example .env
-  echo "📝 Created .env from template — fill in your keys!"
-else
-  echo "✅ .env already exists"
+
+if ! command -v python3 &> /dev/null; then
+    echo "❌ Python 3 is required. Install it from https://python.org"
+    exit 1
 fi
+
+echo "✅ Python 3 found: $(python3 --version)"
+
+echo "📦 Installing PrunnerAI CLI..."
+pip install -e . 2>/dev/null || pip3 install -e .
+
 echo ""
-echo "💎 Setup complete! Run: python3 bridge_worker.py --key YOUR_KEY --name my-machine"
+echo "✅ Installation complete!"
+echo ""
+echo "Usage:"
+echo "  prunnerai config set bridge_key pb_YOUR_KEY"
+echo "  prunnerai status"
+echo "  prunnerai bridge start"
+echo ""
+echo "For AI features (model download/inference):"
+echo "  pip install prunnerai-cli[ai]"
+echo ""
